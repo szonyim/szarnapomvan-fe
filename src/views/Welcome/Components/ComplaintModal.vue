@@ -6,6 +6,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import MaterialTextArea from "@/components/MaterialTextArea.vue";
 import Api from "../../../configs/Api";
+import ReCaptcha from "../../../components/ReCaptcha.vue";
 
 const props = defineProps(['locations'])
 const store = useAppStore();
@@ -39,7 +40,7 @@ function onContentChange(e) {
 }
 
 function createPost() {
-  fetch(`${Api.createUrl('/api/Post/add')}`, {
+  fetch(`${Api.get('/api/Post/add')}`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -169,6 +170,8 @@ function createPost() {
               data-bs-dismiss="modal">
             Mégse
           </MaterialButton>
+
+          <ReCaptcha />
           <MaterialButton variant="gradient" color="success" class="mb-0" @click="createPost">
             Mehet
           </MaterialButton>

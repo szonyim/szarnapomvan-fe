@@ -3,6 +3,7 @@
 
   const props = defineProps(['posts'])
 </script>
+
 <template>
   <div class="row">
       <div class="col-lg-12" v-for="post in props.posts">

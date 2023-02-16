@@ -2,5 +2,5 @@ const baseUrl = 'https://localhost:7175'
 
 export default {
   baseUrl,
-  createUrl: (path) => baseUrl + path
+  get: (path) => baseUrl + path
 }
