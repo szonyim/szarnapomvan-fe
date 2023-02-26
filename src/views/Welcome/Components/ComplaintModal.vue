@@ -40,6 +40,12 @@ function onContentChange(e) {
 }
 
 function createPost() {
+
+  if(!createdBy.value || !content.value || selectedLevel.value === null || !selectedLocationId.value) {
+    alert('Mindent ki kell töltened!');
+    return;
+  }
+
   fetch(`${Api.get('/api/Post/add')}`, {
     method: "POST",
     headers: {
@@ -55,14 +61,23 @@ function createPost() {
   .then(response => response.json())
   .then((response) => {
     store.$patch((state) => {
-      state.posts.unshift(response)
-      state.hasChanged = true
-    })
+      state.posts.items.unshift(response);
+      state.hasChanged = true;
+    });
 
-    const complaintModal = document.getElementById('complaintModal')
-    const complaintModalInstance = store.bootstrap.Modal.getInstance(complaintModal) 
-    complaintModalInstance.hide()
+    const complaintModal = document.getElementById('complaintModal');
+    const complaintModalInstance = store.bootstrap.Modal.getInstance(complaintModal);
+    complaintModalInstance.hide();
+    resetComplaintModal();
   })
+}
+
+function resetComplaintModal() {
+  createdBy.value = '';
+  content.value = '';
+  selectedLocationId.value = null;
+  selectedLevel.value = null;
+  document.getElementById('content').value = '';
 }
 </script>
 
@@ -78,7 +93,7 @@ function createPost() {
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            Az én panaszom
+            Kipakolom ami nyomaszt...
           </h5>
           <MaterialButton
               color="none"
@@ -110,7 +125,7 @@ function createPost() {
                     data-bs-toggle="dropdown"
                 >
                   <!-- <span v-text="selectedLocation === null? 'Honnan?' : locations[selectedLocation].name"></span> -->
-                  {{ selectedLocationId === null ? 'Honnan?' : locations[selectedLocationId].name }}
+                  {{ selectedLocationId === null ? 'Honnan?' : locations.find(e => e.id === selectedLocationId).name }}
                 </MaterialButton>
 
                 <ul class="dropdown-menu px-2 py-3"
@@ -151,7 +166,7 @@ function createPost() {
             <div class="col-lg-12">
               <MaterialTextArea
                   class="input-group-static mb-4"
-                  id="message"
+                  id="content"
                   :rows="4"
                   :model="content"
                   :value="content"
@@ -172,7 +187,7 @@ function createPost() {
           </MaterialButton>
 
           <ReCaptcha />
-          <MaterialButton variant="gradient" color="success" class="mb-0" @click="createPost">
+          <MaterialButton variant="gradient" color="success" class="mb-0" @click="createPost" :disabled="!store.isHumanComplaint">
             Mehet
           </MaterialButton>
         </div>

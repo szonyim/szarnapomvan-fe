@@ -1,3 +1,8 @@
+body {
+  background-image: url('/src/assets/img/vue-mk-header.jpg');
+  background-size: cover;
+}
+
 .page-header {
   padding: 75px 0;
   position: relative;
@@ -6,4 +11,21 @@
   align-items: center;
   background-size: cover;
   background-position: 50%;
+}
+
+.revolut-qr {
+  width: 400px;
+}
+
+.revolut-link {
+  color: #906090;
+  font-weight: bold;
+}
+
+.white {
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
 }

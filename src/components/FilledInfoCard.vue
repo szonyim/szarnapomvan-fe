@@ -24,30 +24,22 @@ defineProps({
       };
     },
   },
-  icon: {
-    type: Object,
-    required: true,
-    component: String,
-    color: String,
-  },
-  title: {
+  name: {
     type: String,
     required: true,
   },
-  description: {
+  content: {
     type: String,
     required: true,
   },
-  action: {
+  details: {
     type: Object,
     required: true,
-    label: {
-      type: Object,
+    county: {
+      type: String,
       required: true,
-      text: String,
-      color: String,
     },
-    route: {
+    level: {
       type: String,
       required: true,
     },
@@ -56,25 +48,21 @@ defineProps({
 </script>
 <template>
   <div
-    class="info-horizontal border-radius-xl d-block d-md-flex"
+    class="info-horizontal border-radius-xl bg-gradient-success p-1 my-1"
     :class="`${color.background ?? ''}`"
   >
-    <i class="material-icons text-3xl" :class="`text-${icon.color}`">{{
-      icon.component
-    }}</i>
-    <div class="ps-0 ps-md-3 mt-3 mt-md-0">
-      <h5 :class="`text-${color.text ?? ''}`">{{ title }}</h5>
+      <h5 :class="`text-${color.text ?? ''}`">{{ name }}</h5>
+      <hr class="bg-white my-2">
       <p :class="`text-${color.text ?? ''}`">
-        {{ description }}
+        {{ content }}
       </p>
-      <a
-        :href="action.route"
-        class="icon-move-right"
-        :class="`text-${action.label.color ?? 'success'}`"
-      >
-        {{ action.label.text }}
-        <i class="fas fa-arrow-right text-sm ms-1"></i>
-      </a>
-    </div>
+
+      <div class="row white">
+        <div class="col-7">Honnan: {{ details.county }}</div>
+        <div class="col-5">
+          Hangulat: {{ details.level.text }}
+        </div>
+      </div>
+      
   </div>
 </template>

@@ -6,6 +6,7 @@ import Api from "../../configs/Api"
 import Header from "./Components/Header.vue"
 import ComplaintModal from "./Components/ComplaintModal.vue"
 import StatModal from "./Components/StatModal.vue"
+import SupportModal from "./Components/SupportModal.vue"
 import Paginator from "./Components/Paginator.vue"
 import PostContainer from "./Components/PostContainer.vue"
 
@@ -46,7 +47,7 @@ onBeforeMount(() => {
 
 <template>
     <Header />
-    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-5">
       <div class="container">
 
         <Paginator :current-page="store.posts.currentPage" :max-page="store.posts.maxPage" @fetch="fetchPosts" />
@@ -58,5 +59,6 @@ onBeforeMount(() => {
 
     <ComplaintModal :locations="store.locations" />
     <StatModal />
+    <SupportModal />
 
 </template>
