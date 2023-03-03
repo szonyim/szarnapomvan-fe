@@ -16,7 +16,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            Légy jófej és hívj meg egy kávéra :)
+            Ha tetszett, hívj meg egy kávéra :)
           </h5>
           <MaterialButton
             color="none"
@@ -48,9 +48,6 @@
             color="dark"
             data-bs-dismiss="modal">
             Bezár
-          </MaterialButton>
-          <MaterialButton variant="gradient" color="success" class="mb-0">
-            Mehet
           </MaterialButton>
         </div>
       </div>
